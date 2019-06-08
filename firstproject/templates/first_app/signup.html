@@ -1,0 +1,38 @@
+{% extends 'first_app/base.html' %}
+
+
+{% block body_block %}
+<div class="container"  >
+<div class="card bg-primary"  id="signup">
+ <div class="card-title text-center">
+  {% if registered %}
+    <h1>Thank You for Signing Up</h1>
+  {% else %}
+    <h1>Sign Up here</h1>
+    <h3>Fill out the form:</h3>
+      </div>
+      <div class="card-body">
+    <form enctype="multipart/form-data" method="post">
+
+        {% csrf_token %}
+        {{ user_form.as_p }}
+      {{ profile_form.as_p }}
+
+
+    </form>
+          <br>
+          <br>
+          <br>
+          <br><br>
+          <br>
+          <br><br><br><br><br><br><br><br><br><br><br>
+
+          <input type="submit" class="btn btn-success" value="Sign Up">
+
+
+      </div>
+
+  {% endif %}
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'first_app/base.html' %}
+
+{% block body_block %}
+<div class="container" id="login">
+<div class="card bg-primary" >
+    <div class="card-title text-center">
+        <h1>Login here</h1>
+    </div>
+<div class="card-body">
+  <form action="{% url 'first_app:user_login' %}" method="post">
+    {% csrf_token %}
+      <div class="form-group">
+    <label for="username">Username: </label>
+    <input type="text" class="form-control" name="username" placeholder="Enter Username">
+      </div>
+      <div class="form-group">
+    <label for="password">password: </label>
+    <input type="password" class="form-control" name="password">
+      </div>
+    <input type="submit" class="btn btn-success" name="" value="Login">
+
+  </form>
+</div>
+</div>
+</div>
+
+{% endblock %}
