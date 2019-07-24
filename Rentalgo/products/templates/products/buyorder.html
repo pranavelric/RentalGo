@@ -28,7 +28,7 @@
       <form method="POST">
         {% csrf_token %}
         {% bootstrap_form buy_form %}
-        <h5>This product is only in: {{ product.city_choice }}</h5>
+        <h5>This product is only available in: {{ product.city_choice }}</h5>
         <h5>Amount: Rs {{ product.sprice }}</h5>
         <input type="submit" class="btn btn-primary" value="Pay Now">
       </form>

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load staticfiles %}
 {% block title%} About Us{% endblock %}
 {% block content %}
 
@@ -16,7 +16,7 @@
     <!-- Team Member 1 -->
     <div class="col-xl-3 col-md-6 mb-4">
       <div class="card border-0 shadow">
-        <img src="https://secure.i.telegraph.co.uk/multimedia/archive/03249/archetypal-male-fa_3249635c.jpg" class="card-img-top" alt="...">
+        <img src="{% static 'shrey.jfif' %}" style="height: 250px;width: 245px" alt="...">
         <div class="card-body text-center">
           <h5 class="card-title mb-0">Shrey Goel</h5>
           <div class="card-text text-black-50">Roll-No:2018373</div>
@@ -27,7 +27,7 @@
     <!-- Team Member 2 -->
     <div class="col-xl-3 col-md-6 mb-4">
       <div class="card border-0 shadow">
-        <img src="https://secure.i.telegraph.co.uk/multimedia/archive/03249/archetypal-male-fa_3249635c.jpg" class="card-img-top" alt="...">
+        <img src="{% static 'untitled.png' %}" style="height: 250px;width: 245px">
         <div class="card-body text-center">
           <h5 class="card-title mb-0">Pranav choudhary</h5>
           <div class="card-text text-black-50">Roll-No:2018184</div>
@@ -38,7 +38,7 @@
     <!-- Team Member 3 -->
     <div class="col-xl-3 col-md-6 mb-4">
       <div class="card border-0 shadow">
-        <img src="https://secure.i.telegraph.co.uk/multimedia/archive/03249/archetypal-male-fa_3249635c.jpg" class="card-img-top" alt="...">
+        <img src="{% static 'shikar.jfif' %}" style="height: 250px;width: 245px" alt="...">
         <div class="card-body text-center">
           <h5 class="card-title mb-0">Shikhar Shankar</h5>
           <div class="card-text text-black-50">Roll-No:2018371</div>
@@ -49,7 +49,7 @@
     <!-- Team Member 4 -->
     <div class="col-xl-3 col-md-6 mb-4">
       <div class="card border-0 shadow">
-        <img src="https://secure.i.telegraph.co.uk/multimedia/archive/03249/archetypal-male-fa_3249635c.jpg" class="card-img-top" alt="...">
+        <img src="{% static 'harsh.jpg' %}" style="height: 250px;width: 245px" alt="..." >
         <div class="card-body text-center">
           <h5 class="card-title mb-0">Harsh Chaurasiya</h5>
           <div class="card-text text-black-50">Roll-No:2018099</div>
