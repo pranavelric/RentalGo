@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 <!-- {% block title%} My Awesome Cart Tracker{% endblock %} -->
 {% block content %}
-  <div class="jumbotron">
-      <h2>Order Id {{response.ORDERID}}</h2>
+  <div class="jumbotron" style="margin-top: 12%;height: 500px">
+      <h2 style="text-align: center;font-size: 5em">Order Id {{response.ORDERID}}</h2>
       {% if response.RESPCODE == '01' %}
-        ORDER PLACED SUCCESSFULLY
+          <br>
+          <h4 style="text-align: center;font-size: 2em">  ORDER PLACED SUCCESSFULLY</h4>
       {% else %}
-        ORDER CAN NOT BE PLACED
+          <br>
+          <h4 style="text-align: center;font-size: 2em">ORDER CAN NOT BE PLACED</h4>
       {% endif %}
   </div>
 {% endblock %}
