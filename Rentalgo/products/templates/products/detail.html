@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if product.quantity == 0 %}
+  <div class="alert alert-danger">
+    <strong>Sorry!</strong> This item is out of stock
+  </div>
+{% endif %}
+<div class="jumbotron">
+  <div class="row">
+    <div class="col-2">
+      <img src="{{ product.img1.url }}" class="img-fluid" >
+    </div>
+    <div class="col-6">
+      <h2>{{ product.prod_name }}</h2>
+    </div>
+    {% if product.quantity > 0 %}
+      <div class="col-4">
+        <a href="{% url 'new_order' product.id %}"><button class="btn btn-primary btn-lg btn-block" name="button">Rent</button></a>
+      </div>
+    {% endif %}
+
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-8">
+      <img src="{{ product.img2.url }}" class="img-fluid" style="height: 400px" width="400px">
+    </div>
+    <div class="col-4">
+      <h4>Per Day: Rs {{ product.dprice }}</h4>
+      <h4>Per Week: Rs {{ product.wprice }}</h4>
+      <h4>Per Month: Rs {{ product.mprice }}</h4>
+      <br>
+      {% if product.available_for_selling == "y" %}
+        {% if product.quantity > 0 %}
+          <a href="{% url 'buy_order' product.id %}"><button class="btn btn-primary btn-lg btn-block" name="button">Buy</button></a>
+        {% endif %}
+        <h4>Selling Price: Rs {{ product.sprice }}</h4>
+      {% endif %}
+    </div>
+
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-8">
+      <h5>{{ product.description }}</h5>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block content %}
+  <div class="alert alert-info">
+    <strong>Info!</strong> You can delete the ad later in your profile
+  </div>
+
+{% if error %}
+{{ error }}
+<br>
+<br>
+{% endif %}
+<div class="container col-5">
+  <div class="jumbotron">
+    <h1>Post New Ad</h1>
+    <form action="{% url 'create' %}" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {% bootstrap_form prod_form %}
+      <input type="submit" class="btn btn-primary" value="Create">
+    </form>
+  </div>
+</div>
+
+{% endblock %}

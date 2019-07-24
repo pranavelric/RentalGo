@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+<!-- {% block title%} My Awesome Cart Tracker{% endblock %} -->
+{% block content %}
+  <div class="jumbotron">
+      <h2>Order Id {{response.ORDERID}}</h2>
+      {% if response.RESPCODE == '01' %}
+        ORDER PLACED SUCCESSFULLY
+      {% else %}
+        ORDER CAN NOT BE PLACED
+      {% endif %}
+  </div>
+{% endblock %}

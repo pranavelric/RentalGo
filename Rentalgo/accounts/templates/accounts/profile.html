@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block content %}
+  {% if user.profile.kyc_verified == "n" %}
+    <div class="alert alert-info">
+      <strong>Info!</strong> If you have entered your kyc details please give 3 days time for us to approve it.
+    </div>
+  {% endif %}
+  <div class="jumbotron">
+    <h4>NAME: {{ user.first_name }} {{user.last_name }}</h4>
+    <h4>Email: {{ user.email }}</h4>
+    <h4>USERNAME: {{ user.username }}</h4>
+    {% if user.profile.kyc_verified == "n" %}
+      <h4>KYC not Verified</h4>
+      <h4><a href="{% url 'getKyc' %}">VERIFY</a></h4>
+    {% else %}
+      <h4>KYC Verified</h4>
+      <h4>My Ads:</h4>
+      {% for product in products %}
+        <div class="row pb-4 pt-3">
+          <div class="col-2" onclick="window.location='{% url 'detail' product.id %}';" style="cursor: pointer;">
+            <img src="{{ product.img1.url }}" class="img-fluid">
+          </div>
+          <div class="col-7" onclick="window.location='{% url 'detail' product.id %}';"  style="cursor: pointer;">
+            <h4>{{ product.prod_name }}</h4>
+          </div>
+          <div class="col-3">
+            <a href="{% url 'delete' product.id %}"><button class="btn btn-danger btn-lg btn-block" name="button">Delete</button></a>
+            <br>
+            <h5>Per Day: Rs {{ product.dprice }}</h5>
+            <h5>Per Week: Rs {{ product.wprice }}</h5>
+            <h5>Per Month: Rs {{ product.mprice }}</h5>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% block content %}
+{% if error %}
+  <div class="alert alert-danger alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Sorry!</strong> {{ error }}
+  </div>
+{% endif %}
+<div class="jumbotron">
+    <div class="row pb-4 pt-3">
+      <div class="col-2" >
+        <img src="{{ product.img1.url }}" class="img-fluid ">
+      </div>
+      <div class="col-7">
+        <h4>{{ product.prod_name }}</h4>
+      </div>
+      <div class="col-3">
+        <!-- <a href="{% url 'detail' product.id %}"><button class="btn btn-primary btn-lg btn-block" name="button">Rent</button></a>
+        <br> -->
+        <h5>Per Day: Rs {{ product.dprice }}</h5>
+        <h5>Per Week: Rs {{ product.wprice }}</h5>
+        <h5>Per Month: Rs {{ product.mprice }}</h5>
+      </div>
+    </div>
+    <div class="container col-4">
+      <form method="POST">
+        {% csrf_token %}
+        {% bootstrap_form order_form %}
+        <script>
+          $(function() {
+            $('#id_date_range').daterangepicker({
+              minDate: moment().add(1, 'days'),
+              startDate: moment().add(1, 'days'),
+              endDate: moment().add(1, 'days'),
+              locale: {
+                format: 'DD/MM/YYYY'
+              }
+            });
+          });
+        </script>
+        <input type="submit" class="btn btn-primary" value="Pay Now">
+      </form>
+    </div>
+</div>
+
+{% endblock %}

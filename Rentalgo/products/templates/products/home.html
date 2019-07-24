@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% if error %}
+    <div class="alert alert-danger alert-dismissible">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>Sorry!</strong> {{ error }}
+    </div>
+  {% endif %}
+  <div class="jumbotron">
+    {% for product in products.all %}
+      <div class="row pb-4 pt-3">
+        <div class="col-2" onclick="window.location='{% url 'detail' product.id %}';" style="cursor: pointer; ;
+  height: auto; " >
+          <img src="{{ product.img1.url }}" class="img-fluid  "  >
+        </div>
+        <div class="col-7" onclick="window.location='{% url 'detail' product.id %}';"  style="cursor: pointer;">
+          <h4>{{ product.prod_name }}</h4>
+
+</div>
+        <div class="col-3">
+          <a href="{% url 'detail' product.id %}"><button class="btn btn-primary btn-lg btn-block" name="button">Rent or Buy</button></a>
+          <br>
+          <h5>Per Day: Rs {{ product.dprice }}</h5>
+          <h5>Per Week: Rs {{ product.wprice }}</h5>
+          <h5>Per Month: Rs {{ product.mprice }}</h5>
+
+        </div>
+
+      </div>
+        <hr style="border-top: 1px solid red; width: 100%">
+    {% endfor %}
+
+  </div>
+
+
+
+
+{% endblock %}
