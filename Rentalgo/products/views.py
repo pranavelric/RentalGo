@@ -83,7 +83,8 @@ def new_order(request, product_id):
             return render(request, 'products/paytm.html', {'param_dict': param_dict})
     else:
         if request.user.profile.kyc_verified == "n":
-            return render(request, 'products/home.html', {'error':'Verify your kyc before ordering!'})
+            product=Product.objects
+            return render(request, 'products/home.html',  {'product':product, 'error':'Select two different dates'})
         else:
             order_form = OrderForm
             return render(request, 'products/order.html', {'order_form':order_form, 'product':product})
@@ -151,7 +152,8 @@ def buy_order(request, product_id):
             return render(request, 'products/paytm.html', {'param_dict': param_dict})
     else:
         if request.user.profile.kyc_verified == "n":
-            return render(request, 'products/home.html', {'error':'Verify your kyc before ordering!'})
+            product =Product.objects
+            return render(request, 'products/home.html',  {'product':product, 'error':'Select two different dates'})
         else:
             buy_form = BuyForm
             return render(request, 'products/buyorder.html', {'buy_form':buy_form, 'product':product})
