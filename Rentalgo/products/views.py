@@ -65,9 +65,10 @@ def new_order(request, product_id):
             if order.cost == 0:
                 order_form = OrderForm
                 return render(request, 'products/order.html', {'order_form':order_form, 'product':product, 'error':'Select two different dates'})
+            order.city_choice = product.city_choice
             order.save()
-            product.quantity = product.quantity - 1
-            product.save()
+            # product.quantity = product.quantity - 1
+            # product.save()
             param_dict = {
                 'MID': 'WorldP64425807474247',
                 'ORDER_ID': str(10000000000000000-order.id),
@@ -99,13 +100,17 @@ def verify_payment(request):
     verify = Checksum.verify_checksum(response_dict, MERCHANT_KEY, checksum)
     if verify:
         if response_dict['RESPCODE'] == '01':
-            # print('order successful')
-            pass
-        else:
             order = get_object_or_404(Order, pk=100000000000000-int(response_dict['ORDERID']))
             product = get_object_or_404(Product, pk=order.product.id)
-            product.quantity = product.quantity + 1
+            order.payment_status = 'p'
+            product.quantity = product.quantity - 1
+            order.save()
             product.save()
+        else:
+            order = get_object_or_404(Order, pk=100000000000000-int(response_dict['ORDERID']))
+            # product = get_object_or_404(Product, pk=order.product.id)
+            # product.quantity = product.quantity + 1
+            # product.save()
             order.delete()
         return render(request, 'products/paymentstatus.html', {'response': response_dict})
     else:
@@ -128,9 +133,10 @@ def buy_order(request, product_id):
             buyorder.sender = product.owner
             buyorder.order_date = datetime.date.today()
             buyorder.cost = product.sprice
+            buyorder.city_choice = product.city_choice
             buyorder.save()
-            product.quantity = product.quantity - 1
-            product.save()
+            # product.quantity = product.quantity - 1
+            # product.save()
             param_dict = {
                 'MID': 'WorldP64425807474247',
                 'ORDER_ID': str(100000000000000-buyorder.id),
@@ -162,17 +168,22 @@ def buy_payment(request):
     verify = Checksum.verify_checksum(response_dict, MERCHANT_KEY, checksum)
     if verify:
         if response_dict['RESPCODE'] == '01':
-            # print('order successful')
-            pass
-        else:
-            buyorder = get_object_or_404(BuyOrder, pk=100000000000000-int(response_dict['ORDERID']))
+            buyorder = get_object_or_404(BuyOrder, pk=1000000000-int(response_dict['ORDERID']))
             product = get_object_or_404(Product, pk=buyorder.product.id)
-            product.quantity = product.quantity + 1
+            buyorder.payment_status = 'p'
+            product.quantity = product.quantity - 1
+            buyorder.save()
             product.save()
+        else:
+            buyorder = get_object_or_404(BuyOrder, pk=1000000000-int(response_dict['ORDERID']))
+            # product = get_object_or_404(Product, pk=buyorder.product.id)
+            # product.quantity = product.quantity + 1
+            # product.save()
             buyorder.delete()
         return render(request, 'products/paymentstatus.html', {'response': response_dict})
     else:
         redirect('home')
+
 def about(request):
     return render(request, 'about.html')
 
@@ -187,4 +198,3 @@ def contact(request):
         contact.save()
         thank = True
     return render(request, 'contactus.html', {'thank': thank})
-

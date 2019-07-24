@@ -5,7 +5,7 @@ from .models import Product, Order, BuyOrder
 class ProdForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ('prod_name','description','img1','img2','quantity','dprice','wprice','mprice','available_for_selling','sprice')
+        fields = ('prod_name','description','img1','img2','quantity','dprice','wprice','mprice','available_for_selling','sprice','city_choice')
         labels = {
                     'prod_name': 'Product Name',
                     'description': 'Description',
@@ -16,16 +16,17 @@ class ProdForm(forms.ModelForm):
                     'wprice': 'Rent per Week',
                     'mprice': 'Rent per Month',
                     'sprice': 'Selling Price(Fill if available for sale)',
+                    'city_choice': 'This Product is available in',
         }
 
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
-        fields = ('address','city','zip_code','contact','date_range',)
+        fields = ('address','zip_code','contact','date_range',)
         labels = {
                     'date_range': 'Date Range',
                     'address': 'Address',
-                    'city': 'City',
+                    # 'city': 'City',
                     'zip_code': 'Zip Code',
                     'contact': 'Mobile Number',
         }
@@ -33,10 +34,10 @@ class OrderForm(forms.ModelForm):
 class BuyForm(forms.ModelForm):
     class Meta:
         model = BuyOrder
-        fields = ('address','city','zip_code','contact',)
+        fields = ('address','zip_code','contact',)
         labels = {
                     'address': 'Address',
-                    'city': 'City',
+                    # 'city': 'City',
                     'zip_code': 'Zip Code',
                     'contact': 'Mobile Number',
         }
