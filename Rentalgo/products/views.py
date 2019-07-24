@@ -71,7 +71,7 @@ def new_order(request, product_id):
             # product.save()
             param_dict = {
                 'MID': 'WorldP64425807474247',
-                'ORDER_ID': str(10000000000000000-order.id),
+                'ORDER_ID': str(100000000000000002837891-order.id),
                 'TXN_AMOUNT': str(order.cost),
                 'CUST_ID': request.user.email,
                 'INDUSTRY_TYPE_ID': 'Retail',
@@ -100,14 +100,14 @@ def verify_payment(request):
     verify = Checksum.verify_checksum(response_dict, MERCHANT_KEY, checksum)
     if verify:
         if response_dict['RESPCODE'] == '01':
-            order = get_object_or_404(Order, pk=100000000000000-int(response_dict['ORDERID']))
+            order = get_object_or_404(Order, pk=100000000000000002837891-int(response_dict['ORDERID']))
             product = get_object_or_404(Product, pk=order.product.id)
             order.payment_status = 'p'
             product.quantity = product.quantity - 1
             order.save()
             product.save()
         else:
-            order = get_object_or_404(Order, pk=100000000000000-int(response_dict['ORDERID']))
+            order = get_object_or_404(Order, pk=100000000000000002837891-int(response_dict['ORDERID']))
             # product = get_object_or_404(Product, pk=order.product.id)
             # product.quantity = product.quantity + 1
             # product.save()
@@ -139,7 +139,7 @@ def buy_order(request, product_id):
             # product.save()
             param_dict = {
                 'MID': 'WorldP64425807474247',
-                'ORDER_ID': str(100000000000000-buyorder.id),
+                'ORDER_ID': str(100000000000000382109321-buyorder.id),
                 'TXN_AMOUNT': str(buyorder.cost),
                 'CUST_ID': request.user.email,
                 'INDUSTRY_TYPE_ID': 'Retail',
@@ -168,14 +168,14 @@ def buy_payment(request):
     verify = Checksum.verify_checksum(response_dict, MERCHANT_KEY, checksum)
     if verify:
         if response_dict['RESPCODE'] == '01':
-            buyorder = get_object_or_404(BuyOrder, pk=1000000000-int(response_dict['ORDERID']))
+            buyorder = get_object_or_404(BuyOrder, pk=100000000000000382109321-int(response_dict['ORDERID']))
             product = get_object_or_404(Product, pk=buyorder.product.id)
             buyorder.payment_status = 'p'
             product.quantity = product.quantity - 1
             buyorder.save()
             product.save()
         else:
-            buyorder = get_object_or_404(BuyOrder, pk=1000000000-int(response_dict['ORDERID']))
+            buyorder = get_object_or_404(BuyOrder, pk=100000000000000382109321-int(response_dict['ORDERID']))
             # product = get_object_or_404(Product, pk=buyorder.product.id)
             # product.quantity = product.quantity + 1
             # product.save()
