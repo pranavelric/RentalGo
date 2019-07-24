@@ -12,7 +12,7 @@
 <br>
 {% endif %}
 <div class="container col-5">
-  <div class="jumbotron">
+  <div class="jumbotron" >
     <h1>Post New Ad</h1>
     <form action="{% url 'create' %}" method="POST" enctype="multipart/form-data">
       {% csrf_token %}

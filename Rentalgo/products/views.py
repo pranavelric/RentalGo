@@ -30,7 +30,9 @@ def create(request):
 
     else:
         if request.user.profile.kyc_verified == "n":
-            return render(request, 'products/home.html', {'error':'Verify your kyc before posting an AD!'})
+            products = Product.objects
+            return render(request, 'products/home.html', {'products':products, 'error':'Verify your kyc before posting an AD!'})
+
         else:
             prod_form = ProdForm
             return render(request, 'products/create.html', {'prod_form':prod_form})

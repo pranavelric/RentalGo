@@ -1,21 +1,7 @@
 #content{
   padding-top: 4.2em;
 }
-           a:link {
-  color: green;
-}
 
-/* visited link */
-a:visited {
-  color: green;
-}
-
-/* mouse over link */
-a:hover {
-  color: red;
-}
-
-/* selected link */
-a:active {
-  color: yellow;
+.jumbotron{
+  background-color: #666666;
 }

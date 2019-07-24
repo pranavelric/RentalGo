@@ -5,7 +5,7 @@
 
 <div class="container my-3 jumbotron">
     <h3>Contact Us</h3>
-    <form action="/contact/" method="post">{% csrf_token %}
+    <form action="/contact/" method="post" id="form">{% csrf_token %}
   <div class="form-group">
     <label for="name">Name</label>
     <input type="text" class="form-control" id="name" name='name' placeholder="Enter Your Name">
@@ -25,15 +25,15 @@
     <label for="desc">How May We Help You?</label>
     <textarea class="form-control" id="desc" name='desc' rows="3"></textarea>
   </div>
-        <button type="submit" class="btn btn-success" onclick="thank()">Submit</button>
-        <script>
-function thank() {
-  alert("thanks for contaction us we will contact you soon");
 
+<button type="submit" class="btn btn-success" onclick="thank()">Submit</button>
+            <script>
+function thank() {
+    sweetAlert('Congratulations!', 'Your message has been successfully sent', 'success');
 }
 </script>
-</form>
 
+</form>
 
 
 </div>
