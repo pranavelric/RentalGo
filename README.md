@@ -1,4 +1,4 @@
-# Rental-management-system
+# Rental Management System
 
 <img src="https://forthebadge.com/images/badges/uses-html.svg"/>
 <img src="https://forthebadge.com/images/badges/made-with-javascript.svg"/>
